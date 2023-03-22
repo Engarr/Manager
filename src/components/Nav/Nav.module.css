@@ -1,0 +1,45 @@
+.mainContainer {
+	position: relative;
+}
+.NavContainer {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--background);
+	position: relative;
+	top: 30px;
+	width: 90%;
+	left: 50%;
+	transform: translate(-50%);
+	border-radius: 12px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.568);
+}
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Libre Baskerville;
+	text-transform: uppercase;
+	color: var(--main-color);
+	padding: 10px 20px;
+	cursor: pointer;
+}
+.icon,
+.optionIcon {
+	font-size: 2rem;
+	padding: 5px 10px;
+	margin-right: 0.2em;
+}
+.optionContainer {
+	color: var(--main-color);
+	margin: 0.5em;
+}
+.optionIcon {
+	cursor: pointer;
+	transition: background-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
+}
+.optionIcon:hover {
+	background-color: #fff;
+	box-shadow: 0 0 2px inset rgba(0, 0, 0, 0.158);
+	border-radius: 5px;
+}
