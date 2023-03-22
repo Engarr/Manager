@@ -1,17 +1,19 @@
 import React from 'react';
-import classes from './Input.Module.css';
-const Input = () => {
+import classes from './Input.module.css';
+
+const Input = ({ type, id, data, text }) => {
 	return (
 		<div className={classes.inputBox}>
 			<input
-				type='text'
-				id='username'
-				name='username'
+				type={type}
+				id={data}
+				name={data}
 				required
 				className={classes.input}
+				placeholder={text}
 			/>
-			<label for='username' className={classes.label}>
-				
+			<label htmlFor={data} className={classes.label}>
+				{text}
 			</label>
 		</div>
 	);

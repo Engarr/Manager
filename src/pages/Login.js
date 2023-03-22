@@ -6,23 +6,15 @@ const Login = () => {
 	return (
 		<div className={classes.mainContainer}>
 			<div className={classes.formContainer}>
-				<form>
+				<form className={classes.form}>
 					<h2>Login</h2>
-					<div className={classes.inputBox}>
-						<Input />
-						<input
-							type='text'
-							id='username'
-							name='username'
-							required
-							className={classes.input}
-						/>
-						<label for='username' className={classes.label}>
-							Nazwa użytkownika:
-						</label>
+					<div>
+						<Input type={'text'} id={'username'} text={'Name'} />
+						<Input type={'text'} id={'Password'} text={'Password'} />
+						<button type='submit' className={classes.btn}>
+							Login
+						</button>
 					</div>
-
-					{/* <button type='submit'>Login</button> */}
 				</form>
 			</div>
 		</div>

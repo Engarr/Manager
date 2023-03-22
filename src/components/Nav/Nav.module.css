@@ -22,6 +22,7 @@
 	text-transform: uppercase;
 	color: var(--main-color);
 	padding: 10px 20px;
+	letter-spacing: 2px;
 	cursor: pointer;
 }
 .icon,

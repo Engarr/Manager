@@ -1,8 +1,8 @@
 .inputBox {
-	margin-top: 1em;
 	position: relative;
-	min-width: 290px;
-	width: 100%;
+	margin-top: 1em;
+	/* min-width: 290px; */
+	/* width: 100%; */
 	padding-right: 1em;
 }
 
@@ -23,9 +23,10 @@
 .inputBox label {
 	position: absolute;
 	left: 0;
+	top: 0px;
 	padding: 10px;
 	pointer-events: none;
-	font-size: 1em;
+	font-size: 1.1em;
 	color: gray;
 	transition: 0.5s;
 }
@@ -35,29 +36,12 @@
 	color: black;
 	transform: translate(10px) translateY(-7px);
 	font-size: 0.95em;
-	padding: 0 5px;
+	padding: 0 10px;
 	letter-spacing: 1px;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
+	border: 1px solid rgba(2, 2, 2, 0.349);
+	border-radius: 2px;
 	background-color: #fff;
 }
 .inputBox input:focus {
 	border: 1px solid black;
-}
-.error input {
-	border: 1px solid red;
-}
-.error input::placeholder {
-	color: red;
-	text-align: center;
-	bottom: 0;
-	left: 0;
-	margin-left: 10px;
-	position: absolute;
-}
-
-@media screen and (max-width: 1206px) {
-	.inputBox {
-		padding-right: 0;
-	}
 }

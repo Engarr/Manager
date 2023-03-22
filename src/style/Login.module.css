@@ -1,18 +1,40 @@
 .mainContainer {
 	position: relative;
-	top: -100px;
-	height: 100vh;
+	top: 100px;
 }
 
 .formContainer {
-	position: absolute;
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	top: 50%;
+	position: relative;
 	left: 50%;
+	width: 50%;
+	max-width: 400px;
 	transform: translate(-50%);
 	background-color: var(--background);
+	padding: 30px 60px;
+	border-radius: 12px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.568);
 }
-
-
+.form {
+	text-align: center;
+	width: 100%;
+}
+.form h2 {
+	letter-spacing: 2px;
+	font-weight: bold;
+	color: var(--main-color);
+}
+.btn {
+	margin-top: 1em;
+	padding: 10px 40px;
+	border-radius: 5px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	border: none;
+	background-color: var(--main-color);
+	color: var(--white);
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+.btn:hover {
+	background-color: #6c9b1c;
+}
