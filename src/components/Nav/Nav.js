@@ -85,7 +85,7 @@ const Nav = () => {
 					<div onClick={acountHandler}>
 						<Link to='/signup'>
 							<AiOutlineUserAdd className={classes.iconMenu}/>
-							<p>Signup</p>
+							<p>Register</p>
 						</Link>
 					</div>
 				</div>
