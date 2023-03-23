@@ -1,24 +1,23 @@
 .mainContainer {
 	position: relative;
 	top: 100px;
+	width: 100%;
 }
 
 .formContainer {
 	position: relative;
+	text-align: center;
 	left: 50%;
-	width: 50%;
-	max-width: 400px;
+	width: 100%;
+	max-width: 600px;
 	transform: translate(-50%);
 	background-color: var(--background);
 	padding: 30px 60px;
 	border-radius: 12px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.568);
 }
-.form {
-	text-align: center;
-	width: 100%;
-}
-.form h2 {
+
+.formContainer h2 {
 	letter-spacing: 2px;
 	font-weight: bold;
 	color: var(--main-color);
@@ -33,8 +32,15 @@
 	background-color: var(--main-color);
 	color: var(--white);
 	cursor: pointer;
-	transition: background-color 0.3s;
+	transition: background-color 0.3s, box-shadow 0.3s;
 }
 .btn:hover {
 	background-color: #6c9b1c;
+	box-shadow: 0 0 3px rgb(5, 5, 5);
+}
+
+@media only screen and (max-width: 1024px) {
+	.formContainer {
+		width: 90%;
+	}
 }

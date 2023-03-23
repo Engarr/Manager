@@ -1,10 +1,10 @@
 import React from 'react';
-import { ReactDOM } from 'react-dom';
+import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 
-const Modal = () => {
-	return ReactDOM.cretePortal(
-		<div className={classes.backdrop}></div>,
+const Modal = ({handler}) => {
+	return ReactDOM.createPortal(
+		<div className={classes.backdrop} onClick={handler}></div>,
 		document.getElementById('backdrop')
 	);
 };

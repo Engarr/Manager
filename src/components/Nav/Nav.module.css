@@ -2,14 +2,15 @@
 	position: relative;
 }
 .NavContainer {
+	position: relative;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	background-color: var(--background);
-	position: relative;
 	top: 30px;
 	width: 90%;
 	left: 50%;
+	padding: 20px 20px;
 	transform: translate(-50%);
 	border-radius: 12px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.568);
@@ -28,19 +29,126 @@
 .icon,
 .optionIcon {
 	font-size: 2rem;
-	padding: 5px 10px;
 	margin-right: 0.2em;
 }
 .optionContainer {
-	color: var(--main-color);
+	display: flex;
 	margin: 0.5em;
 }
-.optionIcon {
+.optionContainer div:last-child {
+	position: relative;
+}
+.accountOption {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 20%;
+	top: 70%;
+	background-color: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.568);
+	padding: 10px 40px;
+	border-radius: 12px;
+	opacity: 0;
+	transition: opacity linear 0.3s;
+}
+.accountOptionActive {
+	opacity: 1;
+}
+.accountOption div {
+	text-align: center;
+
+	padding: 10px 20px;
+}
+.accountOption div:hover {
+	background-color: #fff;
+	box-shadow: 0 0 2px inset rgba(0, 0, 0, 0.158);
+	border-radius: 5px;
+}
+.accountOption div a {
+	font-size: 1.2em;
+	color: var(--main-color);
+	font-weight: bold;
+}
+.optionIcon,
+.close {
+	padding: 5px;
+	width: 50px;
+	height: 50px;
 	cursor: pointer;
+	color: var(--main-color);
 	transition: background-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
+}
+.menuContainer {
+	position: fixed;
+	top: 0;
+	right: -100%;
+	background-color: #fff;
+	height: auto;
+	width: 100%;
+	z-index: 200;
+	opacity: 0;
+	transition: opacity 0.3s, right linear 0.3s;
+}
+.active {
+	opacity: 1;
+	right: 0;
+}
+.menuOptions {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 1em;
+	text-align: center;
+}
+.menuOptions div {
+	margin: 0.5em 0;
+	padding: 5px 20px;
+}
+.menuOptions div:last-child {
+	margin-bottom: 2em;
+}
+.menuOptions p {
+	color: var(--main-color);
+	font-weight: bold;
+}
+.logoMenu {
+	margin-top: 2em;
+}
+.close {
+	position: absolute;
+	right: 20px;
+	top: 30px;
+	color: var(--main-color);
 }
 .optionIcon:hover {
 	background-color: #fff;
 	box-shadow: 0 0 2px inset rgba(0, 0, 0, 0.158);
 	border-radius: 5px;
+}
+.burger {
+	display: none;
+	font-size: 1.8em;
+	margin: 0.5em;
+	color: var(--main-color);
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+	.formContainer {
+		width: 90%;
+	}
+	.NavContainer {
+		justify-content: space-between;
+	}
+	.logo h2 {
+		font-size: 1.2rem;
+	}
+	.optionContainer {
+		display: none;
+	}
+	.burger {
+		display: block;
+	}
 }
