@@ -11,6 +11,7 @@ body {
 	font-family: sans-serif, 'Libre Baskerville';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--background-body);
 }
 
 code {
@@ -22,6 +23,7 @@ a {
 	color: inherit;
 }
 :root {
+	--background-body: #dddddd60;
 	--background: #dddddd27;
 	--main-color: #80b328;
 	--white: #ffff;

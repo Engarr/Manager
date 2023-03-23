@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -35,18 +35,19 @@ const Nav = () => {
 		}, 10);
 	};
 
-	useEffect(() => {
-		const handleClickOutside = (e) => {
-			console.log(optionRef.current);
-			if (optionRef.current && !optionRef.current.contains(e.target)) {
-				setAccountMenu(false);
-			}
-		};
-		document.addEventListener('mousedown', handleClickOutside);
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [optionRef]);
+	// useEffect(() => {
+	// 	const handleClickOutside = (e) => {
+	// 		console.log(optionRef.current);
+	// 		// console.log(e.target);
+	// 		if (optionRef.current && !optionRef.current.contains(e.target)) {
+	// 			setAccountMenu(false);
+	// 		}
+	// 	};
+	// 	document.addEventListener('mousedown', handleClickOutside);
+	// 	return () => {
+	// 		document.removeEventListener('mousedown', handleClickOutside);
+	// 	};
+	// }, [optionRef]);
 
 	return (
 		<div className={classes.mainContainer}>
@@ -73,16 +74,17 @@ const Nav = () => {
 				<div
 					className={`${classes.accountOption} ${
 						accountMenu ? classes.accountOptionActive : ''
-					}`}>
-					<div onClick={acountHandler} ref={optionRef}>
+					}`}
+					ref={optionRef}>
+					<div onClick={acountHandler}>
 						<Link to='/login'>
-							<AiOutlineUser />
+							<AiOutlineUser className={classes.iconMenu} />
 							<p>Login</p>
 						</Link>
 					</div>
-					<div>
-						<Link>
-							<AiOutlineUserAdd />
+					<div onClick={acountHandler}>
+						<Link to='/signup'>
+							<AiOutlineUserAdd className={classes.iconMenu}/>
 							<p>Signup</p>
 						</Link>
 					</div>
