@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import classes from '../style/Login.module.css';
 import Input from '../components/UI/Input/Input';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 	const [formData, setFormData] = useState({
@@ -9,18 +11,31 @@ const Signup = () => {
 		password: '',
 		repeatPassword: '',
 	});
+	const [errors, setErrors] = useState({
+		name: '',
+		email: '',
+		password: '',
+		repeatPassword: '',
+	});
+	const [isLoading, setIsLoading] = useState(false);
+	const navigate = useNavigate();
 
 	const formDataHandler = (e) => {
 		setFormData((prevData) => ({
 			...prevData,
 			[e.target.name]: e.target.value,
 		}));
+		setErrors((prevErr) => ({
+			...prevErr,
+			[e.target.name]: '',
+		}));
 	};
 
 	async function registerUser(e) {
 		e.preventDefault();
-		await fetch('http://localhost:8080/auth/register', {
-			method: 'POST',
+		setIsLoading(true);
+		const response = await fetch('http://localhost:8080/auth/signup', {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -31,8 +46,19 @@ const Signup = () => {
 				repeatPassword: formData.repeatPassword,
 			}),
 		});
-		const data = await Response.json();
-		console.log(data);
+		const data = await response.json();
+		if (response.ok) {
+			toast.success('User has been created!');
+			navigate('/');
+		} else {
+			toast.error('Registration failed');
+			const errorObject = {};
+			data.errors.forEach((error) => {
+				errorObject[error.param] = error.msg;
+			});
+			setErrors(errorObject);
+		}
+		setIsLoading(false);
 	}
 
 	return (
@@ -46,30 +72,42 @@ const Signup = () => {
 						value={formData.email}
 						text={'E-mail'}
 						onChange={formDataHandler}
+						isError={errors.email !== ''}
 					/>
+					{errors.email && <p className={classes.error}>{errors.email}</p>}
 					<Input
 						type={'text'}
 						data={'name'}
 						value={formData.name}
 						text={'Name'}
 						onChange={formDataHandler}
+						isError={errors.name !== ''}
 					/>
+					{errors.name && <p className={classes.error}>{errors.name}</p>}
 					<Input
-						type={'text'}
+						type={'password'}
 						data={'password'}
 						value={formData.password}
 						text={'Password'}
 						onChange={formDataHandler}
+						isError={errors.password !== ''}
 					/>
+					{errors.password && (
+						<p className={classes.error}>{errors.password}</p>
+					)}
 					<Input
-						type={'text'}
+						type={'password'}
 						data={'repeatPassword'}
 						value={formData.repeatPassword}
 						text={'Repeat Password'}
 						onChange={formDataHandler}
+						isError={errors.repeatPassword !== ''}
 					/>
+					{errors.repeatPassword && (
+						<p className={classes.error}>{errors.repeatPassword}</p>
+					)}
 					<button type='submit' value='Register' className={classes.btn}>
-						Register
+						{!isLoading ? 'Register' : <div className={classes.loader}></div>}
 					</button>
 				</div>
 			</form>
