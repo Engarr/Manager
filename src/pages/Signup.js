@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from '../style/Login.module.css';
 import Input from '../components/UI/Input/Input';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 const Signup = () => {
 	const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ const Signup = () => {
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	const formDataHandler = (e) => {
 		setFormData((prevData) => ({
@@ -63,7 +63,7 @@ const Signup = () => {
 		const data = await response.json();
 		if (response.ok) {
 			toast.success('User has been created!');
-			navigate('/');
+			redirect('/');
 		} else {
 			toast.error('Registration failed');
 			const errorObject = {};
