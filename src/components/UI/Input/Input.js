@@ -3,6 +3,7 @@ import classes from './Input.module.css';
 
 const Input = ({ type, data, text, onChange, value, isError }) => {
 	const errorCss = isError ? classes.error : '';
+
 	return (
 		<div className={`${classes.inputBox} ${errorCss}`}>
 			<input

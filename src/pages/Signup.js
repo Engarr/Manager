@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from '../style/Login.module.css';
 import Input from '../components/UI/Input/Input';
 import { toast } from 'react-hot-toast';
@@ -17,6 +17,13 @@ const Signup = () => {
 		password: '',
 		repeatPassword: '',
 	});
+	const [isErrors, setIsErrors] = useState({
+		name: false,
+		email: false,
+		password: false,
+		repeatPassword: false,
+	});
+
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
@@ -30,6 +37,13 @@ const Signup = () => {
 			[e.target.name]: '',
 		}));
 	};
+	useEffect(() => {
+		const newValidation = {};
+		Object.keys(errors).forEach((key) => {
+			newValidation[key] = errors[key] !== '';
+		});
+		setIsErrors(newValidation);
+	}, [errors]);
 
 	async function registerUser(e) {
 		e.preventDefault();
@@ -72,7 +86,7 @@ const Signup = () => {
 						value={formData.email}
 						text={'E-mail'}
 						onChange={formDataHandler}
-						isError={errors.email !== ''}
+						isError={isErrors.email}
 					/>
 					{errors.email && <p className={classes.error}>{errors.email}</p>}
 					<Input
@@ -81,7 +95,7 @@ const Signup = () => {
 						value={formData.name}
 						text={'Name'}
 						onChange={formDataHandler}
-						isError={errors.name !== ''}
+						isError={isErrors.name}
 					/>
 					{errors.name && <p className={classes.error}>{errors.name}</p>}
 					<Input
@@ -90,7 +104,7 @@ const Signup = () => {
 						value={formData.password}
 						text={'Password'}
 						onChange={formDataHandler}
-						isError={errors.password !== ''}
+						isError={isErrors.password}
 					/>
 					{errors.password && (
 						<p className={classes.error}>{errors.password}</p>
@@ -101,7 +115,7 @@ const Signup = () => {
 						value={formData.repeatPassword}
 						text={'Repeat Password'}
 						onChange={formDataHandler}
-						isError={errors.repeatPassword !== ''}
+						isError={isErrors.repeatPassword}
 					/>
 					{errors.repeatPassword && (
 						<p className={classes.error}>{errors.repeatPassword}</p>
