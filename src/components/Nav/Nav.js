@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Form } from 'react-router-dom';
 
 import {
 	AiOutlineHome,
 	AiOutlineUser,
 	AiOutlineCloseSquare,
 	AiOutlineUserAdd,
+	AiOutlineLogout,
 } from 'react-icons/ai';
 import { SiGoogletagmanager } from 'react-icons/si';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -53,8 +54,10 @@ const Nav = () => {
 		<div className={classes.mainContainer}>
 			<div className={classes.NavContainer}>
 				<div className={classes.logo}>
-					<SiGoogletagmanager className={classes.icon} />
-					<h2>Manager</h2>
+					<Link to='/'>
+						<SiGoogletagmanager className={classes.icon} />
+						<h2>Manager</h2>
+					</Link>
 				</div>
 
 				<GiHamburgerMenu className={classes.burger} onClick={showMenuHandler} />
@@ -84,9 +87,17 @@ const Nav = () => {
 					</div>
 					<div onClick={acountHandler}>
 						<Link to='/signup'>
-							<AiOutlineUserAdd className={classes.iconMenu}/>
+							<AiOutlineUserAdd className={classes.iconMenu} />
 							<p>Register</p>
 						</Link>
+					</div>
+					<div onClick={acountHandler}>
+						<Form action='/logout' method='post'>
+							<button className={classes.logoutBtn}>
+								<AiOutlineLogout className={classes.iconMenu} />
+								<p>Logout</p>
+							</button>
+						</Form>
 					</div>
 				</div>
 			</div>

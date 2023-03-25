@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import classes from '../style/Login.module.css';
 import Input from '../components/UI/Input/Input';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
@@ -49,9 +51,11 @@ const Login = () => {
 		});
 		const data = await response.json();
 		if (response.ok) {
-			console.log(data);
-			const token = data.token;
+			console.log(data.token);
+			const token = await data.token;
 			localStorage.setItem('token', token);
+			navigate('/');
+			toast.success('You are logged in');
 		} else {
 			toast.error('Login failed');
 			const errorObject = {};
@@ -79,7 +83,7 @@ const Login = () => {
 					<Input
 						type={'password'}
 						data={'password'}
-						value={formData.email}
+						value={formData.password}
 						text={'Password'}
 						onChange={formDataHandler}
 						isError={isErrors.password}

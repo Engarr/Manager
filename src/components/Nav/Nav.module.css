@@ -4,7 +4,7 @@
 .NavContainer {
 	position: relative;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	top: 30px;
 	width: 90%;
@@ -23,15 +23,18 @@
 	z-index: 100;
 }
 .logo {
-	display: flex;
-	justify-content: center;
 	align-items: center;
 	font-family: Libre Baskerville;
 	text-transform: uppercase;
 	color: var(--main-color);
 	padding: 10px 20px;
-	letter-spacing: 4px;
+	letter-spacing: 5px;
 	cursor: pointer;
+}
+.logo a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .icon,
 .optionIcon {
@@ -60,7 +63,7 @@
 }
 .accountOptionActive {
 	opacity: 1;
-	right: 20%;
+	right: 0%;
 }
 .accountOption div {
 	text-align: center;
@@ -70,10 +73,16 @@
 	font-size: 25px;
 }
 
-.accountOption div a {
+.accountOption div a,
+.logoutBtn {
 	font-size: 1.2em;
 	color: var(--main-color);
 	font-weight: bold;
+}
+.logoutBtn {
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 .optionIcon,
 .close {
@@ -133,6 +142,7 @@
 	box-shadow: 0 0 2px inset rgba(0, 0, 0, 0.158);
 	border-radius: 5px;
 }
+
 .burger {
 	display: none;
 	font-size: 1.8em;
@@ -156,5 +166,8 @@
 	}
 	.burger {
 		display: block;
+	}
+	.accountOption {
+		display: none;
 	}
 }
