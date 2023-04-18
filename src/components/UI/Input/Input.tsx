@@ -1,22 +1,23 @@
 import React from 'react';
 import classes from './Input.module.css';
+import { InputType } from '../../../model/inputType';
 
-const Input = ({ type, data, text, onChange, value, isError }) => {
-	const errorCss = isError ? classes.error : '';
+const Input = (props: InputType) => {
+	const errorCss = props.isError ? classes.error : '';
 
 	return (
 		<div className={`${classes.inputBox} ${errorCss}`}>
 			<input
-				type={type}
-				id={data}
-				name={data}
+				type={props.type}
+				id={props.data}
+				name={props.data}
 				className={`${classes.input} `}
-				placeholder={text}
-				value={value}
-				onChange={onChange}
+				placeholder={props.text}
+				value={props.value}
+				onChange={props.onChange}
 			/>
-			<label htmlFor={data} className={classes.label}>
-				{text}
+			<label htmlFor={props.data} className={classes.label}>
+				{props.text}
 			</label>
 		</div>
 	);

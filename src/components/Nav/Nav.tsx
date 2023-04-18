@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Link, Form } from 'react-router-dom';
 
 import {
@@ -27,7 +27,9 @@ const Nav = () => {
 		setAccountMenu((prev) => (prev = !prev));
 	};
 	const switchClass = () => {
-		const menu = document.querySelector(`.${classes.mainContainer}`);
+		const menu = document.querySelector(
+			`.${classes.mainContainer}`
+		) as HTMLElement;
 		const animateCss = `${classes.active}`;
 
 		menu.classList.add(animateCss);
@@ -36,19 +38,7 @@ const Nav = () => {
 		}, 10);
 	};
 
-	// useEffect(() => {
-	// 	const handleClickOutside = (e) => {
-	// 		console.log(optionRef.current);
-	// 		// console.log(e.target);
-	// 		if (optionRef.current && !optionRef.current.contains(e.target)) {
-	// 			setAccountMenu(false);
-	// 		}
-	// 	};
-	// 	document.addEventListener('mousedown', handleClickOutside);
-	// 	return () => {
-	// 		document.removeEventListener('mousedown', handleClickOutside);
-	// 	};
-	// }, [optionRef]);
+	
 
 	return (
 		<div className={classes.mainContainer}>
