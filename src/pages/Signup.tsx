@@ -5,13 +5,25 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-	const [formData, setFormData] = useState({
+	interface formDataType {
+		name: string;
+		email: string;
+		password: string;
+		repeatPassword: string;
+	}
+	interface formErrorType {
+		name: boolean;
+		email: boolean;
+		password: boolean;
+		repeatPassword: boolean;
+	}
+	const [formData, setFormData] = useState<formDataType>({
 		name: '',
 		email: '',
 		password: '',
 		repeatPassword: '',
 	});
-	const [errors, setErrors] = useState({
+	const [errors, setErrors] = useState<formDataType>({
 		name: '',
 		email: '',
 		password: '',
@@ -27,7 +39,7 @@ const Signup = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
-	const formDataHandler = (e) => {
+	const formDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData((prevData) => ({
 			...prevData,
 			[e.target.name]: e.target.value,
@@ -38,14 +50,20 @@ const Signup = () => {
 		}));
 	};
 	useEffect(() => {
-		const newValidation = {};
-		Object.keys(errors).forEach((key) => {
-			newValidation[key] = errors[key] !== '';
-		});
+		const newValidation: formErrorType = {
+			name: false,
+			email: false,
+			password: false,
+			repeatPassword: false,
+		};
+		// Object.keys(errors).forEach((key) => {
+		// 	newValidation[key keyof] = errors[key] !== '';
+		// });
+
 		setIsErrors(newValidation);
 	}, [errors]);
 
-	async function registerUser(e) {
+	async function registerUser(e: React.FormEvent) {
 		e.preventDefault();
 		setIsLoading(true);
 		const response = await fetch('http://localhost:8080/auth/signup', {
@@ -66,10 +84,18 @@ const Signup = () => {
 			navigate('/login');
 		} else {
 			toast.error('Registration failed');
-			const errorObject = {};
-			data.errors.forEach((error) => {
-				errorObject[error.param] = error.msg;
-			});
+			const errorObject: formDataType = {
+				name: '',
+				email: '',
+				password: '',
+				repeatPassword: '',
+			};
+
+			data.errors.forEach(
+				(error: { param: keyof formDataType; msg: string }) => {
+					errorObject[error.param] = error.msg;
+				}
+			);
 			setErrors(errorObject);
 		}
 		setIsLoading(false);
