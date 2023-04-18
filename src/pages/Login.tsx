@@ -6,16 +6,24 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const navigate = useNavigate();
-	const [formData, setFormData] = useState({
+	interface FormData {
+		password: string;
+		email: string;
+	}
+	interface FormErrors {
+		email: boolean;
+		password: boolean;
+	}
+	const [formData, setFormData] = useState<FormData>({
 		email: '',
 		password: '',
 	});
-	const [errors, setErrors] = useState({
+	const [errors, setErrors] = useState<FormData>({
 		email: '',
 		password: '',
 	});
 
-	const formDataHandler = (e) => {
+	const formDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData((prevData) => ({
 			...prevData,
 			[e.target.name]: e.target.value,
@@ -25,19 +33,24 @@ const Login = () => {
 			[e.target.name]: '',
 		}));
 	};
-	const [isErrors, setIsErrors] = useState({
-		name: false,
+	const [isErrors, setIsErrors] = useState<FormErrors>({
 		email: false,
+		password: false,
 	});
 	useEffect(() => {
-		const newValidation = {};
+		const newValidation: FormErrors = {
+			password: false,
+			email: false,
+		};
+
 		Object.keys(errors).forEach((key) => {
-			newValidation[key] = errors[key] !== '';
+			newValidation[key as keyof FormErrors] =
+				errors[key as keyof FormErrors] !== '';
 		});
 		setIsErrors(newValidation);
 	}, [errors]);
 
-	async function loginUser(e) {
+	async function loginUser(e: React.FormEvent) {
 		e.preventDefault();
 		const response = await fetch('http://localhost:8080/auth/login', {
 			method: 'POST',
@@ -58,8 +71,11 @@ const Login = () => {
 			toast.success('You are logged in');
 		} else {
 			toast.error('Login failed');
-			const errorObject = {};
-			data.errors.forEach((error) => {
+			const errorObject: FormData = {
+				email: '',
+				password: '',
+			};
+			data.errors.forEach((error: { param: keyof FormErrors; msg: string }) => {
 				errorObject[error.param] = error.msg;
 			});
 			setErrors(errorObject);
