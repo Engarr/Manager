@@ -56,9 +56,10 @@ const Signup = () => {
 			password: false,
 			repeatPassword: false,
 		};
-		// Object.keys(errors).forEach((key) => {
-		// 	newValidation[key keyof] = errors[key] !== '';
-		// });
+		Object.keys(errors).forEach((key) => {
+			newValidation[key as keyof formErrorType] =
+				errors[key as keyof formErrorType] !== '';
+		});
 
 		setIsErrors(newValidation);
 	}, [errors]);
